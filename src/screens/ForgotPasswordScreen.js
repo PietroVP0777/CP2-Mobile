@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, Button, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { resetUserPassword } from '../firebase/authService';
 
 export default function ForgotPasswordScreen({ navigation }) {
@@ -9,7 +9,7 @@ export default function ForgotPasswordScreen({ navigation }) {
 
   async function handleResetPassword() {
     if (!email.trim()) {
-      Alert.alert('Atenção', 'Informe seu email.');
+      setErro("Informe seu email.");
       return;
     }
 
@@ -23,13 +23,16 @@ export default function ForgotPasswordScreen({ navigation }) {
       setMensagem('Enviamos as instruções de recuperação de senha para seu email.');
       navigation.goBack();
     } catch (error) {
-      Alert.alert('Erro ao enviar email', error.message);
       setMensagem('');
       setErro("Não foi possível enviar o email. Verifique o endereço e tente novamente.");
     }
   }
 
   return (
+    <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+        >
     <View style={{ flex: 1, justifyContent: 'center', padding: 20 }}>
       <Text style={{ fontSize: 24, marginBottom: 20 }}>Recuperar Senha</Text>
 
@@ -46,6 +49,7 @@ export default function ForgotPasswordScreen({ navigation }) {
       {erro ? <Text style={{ color: 'red', marginTop: 10 }}>{erro}</Text> : null}
       {mensagem ? <Text style={{ color: 'green', marginTop: 10 }}>{mensagem}</Text> : null}
     </View>
+    </KeyboardAvoidingView>
   );
 }
 

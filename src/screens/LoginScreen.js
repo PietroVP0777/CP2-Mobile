@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Button, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, TextInput, Button, TouchableOpacity, Alert, KeyboardAvoidingView, Platform } from 'react-native';
 import { loginUser } from '../firebase/authService';
 
 export default function LoginScreen({ navigation }) {
@@ -9,7 +9,7 @@ export default function LoginScreen({ navigation }) {
 
   async function handleLogin() {
     if (!email.trim() || !password.trim()) {
-      Alert.alert('Atenção', 'Preencha email e senha.');
+      setErro("Preencha email e senha.");
       return;
     }
 
@@ -18,12 +18,15 @@ export default function LoginScreen({ navigation }) {
       setErro('');
       navigation.navigate('Home');
     } catch (error) {
-      Alert.alert('Erro ao entrar', error.message);
       setErro("E-mail ou senha inválidos. Tente novamente.");
     }
   }
 
   return (
+    <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+        >
     <View style={{ flex: 1, justifyContent: 'center', padding: 20 }}>
       <Text style={{ fontSize: 24, marginBottom: 20 }}>Login</Text>
 
@@ -58,5 +61,6 @@ export default function LoginScreen({ navigation }) {
         <Text style={{ marginTop: 10 }}>Esqueci minha senha</Text>
       </TouchableOpacity>
     </View>
+    </KeyboardAvoidingView>
   );
 }

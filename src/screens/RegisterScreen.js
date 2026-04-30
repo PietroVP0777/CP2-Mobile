@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, TextInput, Button, Alert } from 'react-native';
+import { View, Text, TextInput, Button, Alert, KeyboardAvoidingView, Platform, ScrollView } from 'react-native';
 import { registerUser } from '../firebase/authService';
 
 export default function RegisterScreen({ navigation }) {
@@ -10,7 +10,7 @@ export default function RegisterScreen({ navigation }) {
 
   async function handleRegister() {
     if (!name.trim() || !email.trim() || !password.trim()) {
-      Alert.alert('Atenção', 'Preencha nome, email e senha.');
+      setErro("Preencha nome, email e senha.");
       return;
     }
 
@@ -19,12 +19,15 @@ export default function RegisterScreen({ navigation }) {
       Alert.alert('Sucesso', 'Usuário cadastrado com sucesso.');
       navigation.goBack();
     } catch (error) {
-      Alert.alert('Erro ao cadastrar', error.message);
       setErro("Não foi possível cadastrar. Verifique os dados e tente novamente.");
     }
   }
 
   return (
+    <KeyboardAvoidingView
+          style={{ flex: 1 }}
+          behavior={Platform.OS === "ios" ? "padding" : undefined}
+        >
     <View style={{ flex: 1, justifyContent: 'center', padding: 20 }}>
       <Text style={{ fontSize: 24, marginBottom: 20 }}>Cadastro</Text>
 
@@ -55,5 +58,6 @@ export default function RegisterScreen({ navigation }) {
       <Button title="Cadastrar" onPress={handleRegister} />
       {erro ? <Text style={{ color: 'red', marginTop: 10 }}>{erro}</Text> : null}
     </View>
+    </KeyboardAvoidingView>
   );
 }

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { View, Text, TextInput, Button, Alert, FlatList } from "react-native";
+import { View, Text, TextInput, Button, Alert, FlatList, KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  TouchableWithoutFeedback,
+  Keyboard, } from "react-native";
 import {
   createProduct,
   getProducts,
   deleteProduct,
   updateProduct,
 } from "../firebase/productService";
-import { ScrollView } from "react-native-web";
  
 export default function HomeScreen({ navigation, route }) {
   const [name, setName] = useState("");
@@ -120,7 +123,10 @@ export default function HomeScreen({ navigation, route }) {
   }
  
   return (
-    <View style={{ flex: 1 }}>
+    <KeyboardAvoidingView
+      style={{ flex: 1 }}
+      behavior={Platform.OS === "ios" ? "padding" : undefined}
+    >
       <ScrollView style={{ flex: 1, padding: 20 }}>
         <Text style={{ fontSize: 24, marginTop: 40, marginBottom: 20 }}>
           Bem-vindo!
@@ -181,7 +187,6 @@ export default function HomeScreen({ navigation, route }) {
         <Text style={{ fontSize: 20, marginTop: 30, marginBottom: 10 }}>
           Produtos cadastrados
         </Text>
-        <ScrollView style={{ maxHeight: 300 }}>
         <FlatList
           data={products}
           keyExtractor={(item) => item.id}
@@ -215,13 +220,12 @@ export default function HomeScreen({ navigation, route }) {
             </View>
           )}
         />
-        </ScrollView>
  
         <View style={{ marginTop: 20 }}>
           <Button title="Sair" onPress={() => navigation.navigate("Login")} />
         </View>
       </ScrollView>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
  
