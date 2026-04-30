@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { View, Text, Button, Alert } from 'react-native';
-import { CameraView, useCameraPermissions } from 'expo-camera';
+import { useState } from "react";
+import { View, Text, Button, Alert } from "react-native";
+import { CameraView, useCameraPermissions } from "expo-camera";
 
-export default function BarcodeScannerScreen({ navigation }) {
+export default function BarcodeScannerScreen({ navigation, route }) {
   const [permission, requestPermission] = useCameraPermissions();
   const [scanned, setScanned] = useState(false);
 
@@ -11,15 +11,17 @@ export default function BarcodeScannerScreen({ navigation }) {
 
     setScanned(true);
 
-    Alert.alert('Código lido', data, [
+    Alert.alert("Código lido", data, [
       {
-        text: 'OK',
+        text: "OK",
         onPress: () => {
-          navigation.navigate({
-            name: 'Home',
-            params: { scannedBarcode: data },
-            merge: true
-          });
+          // 👇 envia o código de volta pra Home
+          if (route.params?.onScan) {
+            route.params.onScan(data);
+          }
+
+          // 👇 volta sem recriar a tela
+          navigation.goBack();
         },
       },
     ]);
@@ -27,14 +29,7 @@ export default function BarcodeScannerScreen({ navigation }) {
 
   if (!permission) {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 20,
-        }}
-      >
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
         <Text>Carregando permissões da câmera...</Text>
       </View>
     );
@@ -42,15 +37,8 @@ export default function BarcodeScannerScreen({ navigation }) {
 
   if (!permission.granted) {
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: 'center',
-          alignItems: 'center',
-          padding: 20,
-        }}
-      >
-        <Text style={{ fontSize: 20, marginBottom: 20, textAlign: 'center' }}>
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center", padding: 20 }}>
+        <Text style={{ fontSize: 20, marginBottom: 20, textAlign: "center" }}>
           Precisamos da permissão da câmera para ler o código de barras.
         </Text>
 
@@ -61,13 +49,11 @@ export default function BarcodeScannerScreen({ navigation }) {
 
   return (
     <View style={{ flex: 1 }}>
-      <View style={{ flex: 1 }}>
-        <CameraView
-          style={{ flex: 1 }}
-          facing="back"
-          onBarcodeScanned={scanned ? undefined : handleBarcodeScanned}
-        />
-      </View>
+      <CameraView
+        style={{ flex: 1 }}
+        facing="back"
+        onBarcodeScanned={scanned ? undefined : handleBarcodeScanned}
+      />
 
       <View style={{ padding: 20 }}>
         <Text style={{ fontSize: 20, marginBottom: 10 }}>
@@ -79,12 +65,7 @@ export default function BarcodeScannerScreen({ navigation }) {
         </Text>
 
         {scanned && (
-          <Button
-            title="Ler novamente"
-            onPress={() => {
-              setScanned(false);
-            }}
-          />
+          <Button title="Ler novamente" onPress={() => setScanned(false)} />
         )}
       </View>
     </View>

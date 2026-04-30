@@ -32,12 +32,6 @@ export default function HomeScreen({ navigation, route }) {
     loadProducts();
   }, []);
  
-  useEffect(() => {
-    if (route.params?.scannedBarcode) {
-      setBarcode(String(route.params.scannedBarcode));
-    }
-  }, [route.params?.scannedBarcode]);
- 
   function clearForm() {
     setName("");
     setPrice("");
@@ -97,30 +91,44 @@ export default function HomeScreen({ navigation, route }) {
   }
  
   async function handleDeleteProduct(productId) {
-    const confirmDelete = window.confirm(
-      "Tem certeza que deseja excluir este produto?"
-    );
- 
-    if (!confirmDelete) return;
- 
-    try {
-      await deleteProduct(productId);
- 
-      if (editingProductId === productId) {
-        clearForm();
-      }
- 
-      Alert.alert("Sucesso", "Produto excluído com sucesso!");
-      await loadProducts();
-    } catch (error) {
-      console.error(error);
-      Alert.alert("Erro", "Não foi possível excluir o produto.");
-    }
-  }
+  Alert.alert(
+    "Confirmar exclusão",
+    "Tem certeza que deseja excluir este produto?",
+    [
+      {
+        text: "Cancelar",
+        style: "cancel",
+      },
+      {
+        text: "Excluir",
+        style: "destructive",
+        onPress: async () => {
+          try {
+            await deleteProduct(productId);
+
+            if (editingProductId === productId) {
+              clearForm();
+            }
+
+            Alert.alert("Sucesso", "Produto excluído com sucesso!");
+            await loadProducts();
+          } catch (error) {
+            console.error(error);
+            Alert.alert("Erro", "Não foi possível excluir o produto.");
+          }
+        },
+      },
+    ]
+  );
+}
  
   function handleOpenScanner() {
-    navigation.navigate("BarcodeScanner");
-  }
+  navigation.navigate("BarcodeScanner", {
+    onScan: (code) => {
+      setBarcode(code);
+    },
+  });
+}
  
   return (
     <KeyboardAvoidingView
@@ -128,7 +136,7 @@ export default function HomeScreen({ navigation, route }) {
       behavior={Platform.OS === "ios" ? "padding" : undefined}
     >
       <ScrollView style={{ flex: 1, padding: 20 }}>
-        <Text style={{ fontSize: 24, marginTop: 40, marginBottom: 20 }}>
+        <Text style={{ fontSize: 24, marginTop: 10, marginBottom: 20 }}>
           Bem-vindo!
         </Text>
  
@@ -187,41 +195,43 @@ export default function HomeScreen({ navigation, route }) {
         <Text style={{ fontSize: 20, marginTop: 30, marginBottom: 10 }}>
           Produtos cadastrados
         </Text>
-        <FlatList
-          data={products}
-          keyExtractor={(item) => item.id}
-          ListEmptyComponent={<Text>Nenhum produto cadastrado.</Text>}
-          renderItem={({ item }) => (
-            <View
-              style={{
-                borderWidth: 1,
-                borderRadius: 5,
-                padding: 10,
-                marginBottom: 10,
-              }}
-            >
-              <Text>Nome: {item.name}</Text>
-              <Text>Preço: {item.price}</Text>
-              <Text>Código de barras: {item.barcode || "Não informado"}</Text>
- 
-              <View style={{ marginTop: 10 }}>
-                <Button
-                  title="Editar"
-                  onPress={() => handleEditProduct(item)}
-                />
-              </View>
- 
-              <View style={{ marginTop: 10 }}>
-                <Button
-                  title="Excluir"
-                  onPress={() => handleDeleteProduct(item.id)}
-                />
-              </View>
-            </View>
-          )}
+        {products.length === 0 ? (
+  <Text>Nenhum produto cadastrado.</Text>
+) : (
+  products.map((item) => (
+    <View
+      key={item.id}
+      style={{
+        borderWidth: 1,
+        borderRadius: 5,
+        padding: 10,
+        marginBottom: 10,
+      }}
+    >
+      <Text>Nome: {item.name}</Text>
+      <Text>Preço: {item.price}</Text>
+      <Text>
+        Código de barras: {item.barcode || "Não informado"}
+      </Text>
+
+      <View style={{ marginTop: 10 }}>
+        <Button
+          title="Editar"
+          onPress={() => handleEditProduct(item)}
         />
+      </View>
+
+      <View style={{ marginTop: 10 }}>
+        <Button
+          title="Excluir"
+          onPress={() => handleDeleteProduct(item.id)}
+        />
+      </View>
+    </View>
+  ))
+)}
  
-        <View style={{ marginTop: 20 }}>
+        <View style={{ marginTop: 20, marginBottom: 60 }}>
           <Button title="Sair" onPress={() => navigation.navigate("Login")} />
         </View>
       </ScrollView>
