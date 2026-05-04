@@ -71,7 +71,7 @@ export default function RegisterScreen({ navigation }) {
           style={{ borderWidth: 1, marginBottom: 10, padding: 10 }}
         />
 
-        <Button title="Cadastrar" onPress={handleRegister} />
+        <Button title="Cadastrar" onPress={handleRegister} color={'green'} />
 
         {erro ? (
           <Text style={{ color: 'red', marginTop: 10 }}>{erro}</Text>

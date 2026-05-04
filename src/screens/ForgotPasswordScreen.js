@@ -70,7 +70,7 @@ export default function ForgotPasswordScreen({ navigation }) {
           }}
         />
 
-        <Button title="Enviar" onPress={handleResetPassword} />
+        <Button title="Enviar" onPress={handleResetPassword} color={'green'} />
 
         {erro ? (
           <Text style={{ color: 'red', marginTop: 10 }}>{erro}</Text>

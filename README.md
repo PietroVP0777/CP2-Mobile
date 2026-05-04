@@ -1,33 +1,20 @@
-# 📱 FIAP — React Native (Expo)
+# 📱 Projeto React Native (Expo)
 
-## Aula: Login + Navegação
+## 📚 Base do Projeto
 
-Este projeto foi desenvolvido em aula com o objetivo de ensinar os conceitos fundamentais de **React Native com Expo**, focando em:
+Este projeto foi desenvolvido a partir de um template utilizado em aula na FIAP, com o objetivo de praticar conceitos fundamentais de **React Native com Expo**.
 
-* Criação de projeto
-* Organização de pastas
-* Construção de telas
-* Navegação entre telas
-* Componentização básica
+A partir dessa base inicial, foram implementadas melhorias focadas em **usabilidade, experiência do usuário e ajustes de comportamento da aplicação**.
 
 ---
 
-# 🎯 Objetivo
+# 🎯 Objetivo do Projeto
 
-Construir uma aplicação simples contendo:
-
-* Tela de Login
-* Tela de Cadastro
-* Tela de Recuperação de Senha
-* Tela Home
-* Navegação entre telas (Stack)
-
-> ⚠️ Este projeto NÃO possui backend.
-> O foco é **layout + navegação**.
+Criar uma aplicação mobile com navegação entre telas e aprimorar sua usabilidade através de melhorias práticas, simulando situações reais de desenvolvimento.
 
 ---
 
-# 🧱 Tecnologias utilizadas
+# 🧱 Tecnologias Utilizadas
 
 * React Native
 * Expo (SDK 54)
@@ -35,12 +22,12 @@ Construir uma aplicação simples contendo:
 
 ---
 
-# 🚀 Como executar o projeto
+# 🚀 Como Executar o Projeto
 
 ## 1. Clonar o repositório
 
 ```bash
-https://github.com/LuizCamilo-Mobile/FIAP-Project-Mobile-Example.git
+git clone https://github.com/LuizCamilo-Mobile/FIAP-Project-Mobile-Example.git
 ```
 
 ## 2. Acessar a pasta
@@ -63,26 +50,7 @@ npx expo start
 
 ---
 
-# 📦 Instalação manual (caso necessário)
-
-Se precisar recriar o projeto do zero:
-
-```bash
-npx create-expo-app fiap-auth-app --template blank@54
-```
-
-Instalar navegação:
-
-```bash
-npm install @react-navigation/native
-npm install @react-navigation/native-stack
-npm install react-native-screens@4.16.0 --save-exact
-npx expo install react-native-safe-area-context
-```
-
----
-
-# 📁 Estrutura do projeto
+# 📁 Estrutura do Projeto
 
 ```text
 src/
@@ -98,71 +66,79 @@ src/
 
 ---
 
-# 🧭 Fluxo de navegação
+# 🧭 Fluxo de Navegação
 
 * Login → Home
 * Login → Cadastro
-* Login → Esqueci minha senha
+* Login → Recuperação de Senha
 * Cadastro → Voltar
-* Esqueci senha → Voltar
+* Recuperação → Voltar
 * Home → Login
 
 ---
 
-# 📸 Telas do app
+# ✨ Melhorias Implementadas
 
-* Login
-* Cadastro
-* Recuperação de senha
-* Home
+Durante o desenvolvimento, foram aplicadas melhorias importantes em relação ao projeto original:
 
----
+### 💰 Melhoria 1: Formatação de Preço
 
-# 🧠 Conceitos abordados
-
-* `View`, `Text`, `TextInput`, `Button`
-* `TouchableOpacity`
-* `StyleSheet`
-* Navegação com Stack
-* Props e navegação (`navigation.navigate`)
-* Organização de projeto
-* Componentização básica
+* Implementação de formatação no padrão brasileiro (R$)
+* Melhor leitura e padronização de valores monetários
 
 ---
 
-# 🛠️ Problemas comuns
+### ⌨️ Melhoria 2: Ajuste do Teclado em Telas Pequenas
 
-## Erro: "expected dynamic type 'boolean', but had type 'string'"
+* Correção do problema onde o teclado sobrepunha campos
+* Melhor experiência de digitação em dispositivos menores
 
-Solução aplicada:
+---
 
-* Fixar versão:
+### 💾 Melhoria 3: Persistência de Dados
+
+* Preservação das informações do produto ao retornar do leitor de código de barras
+* Evita perda de dados durante a navegação
+
+---
+
+### 📜 Melhoria 4: Ajuste de Rolagem
+
+* Correção do comportamento de scroll em telas menores
+* Garantia de acesso a todos os campos da interface
+
+---
+
+# 🧠 Conceitos Trabalhados
+
+* Componentes básicos (`View`, `Text`, `TextInput`)
+* Estilização com `StyleSheet`
+* Uso de `TouchableOpacity`
+* Navegação com Stack (`React Navigation`)
+* Gerenciamento de estado básico
+* Experiência do usuário (UX)
+* Ajustes de responsividade
+
+---
+
+# 🛠️ Problemas Resolvidos
+
+### Erro: "expected dynamic type 'boolean', but had type 'string'"
+
+Solução:
 
 ```bash
 npm install react-native-screens@4.16.0 --save-exact
 ```
+---
+
+# 🗣️ Observação
+
+Este projeto começou como base educacional e foi evoluído com melhorias práticas, demonstrando a aplicação de boas práticas de desenvolvimento mobile.
 
 ---
 
-# 🎯 Próximos passos
-
-* Melhorar layout (UI/UX)
-* Criar componentes reutilizáveis
-* Adicionar validação de formulário
-* Integrar com Firebase (login real)
-* Persistência de usuário
-
----
-
-# 🗣️ Observação final
-
-Este projeto tem fins educacionais e foi construído passo a passo em aula para facilitar o aprendizado dos alunos.
-
----
-
-# 👨‍🏫 Autor
-
-Projeto utilizado em aula — FIAP
+# 👨‍💻 Autor
 Professor: Luiz Camilo
 
----
+Aprimorado por: Pietro Vitor Pezzente

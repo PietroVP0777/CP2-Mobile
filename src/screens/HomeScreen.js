@@ -137,11 +137,11 @@ export default function HomeScreen({ navigation, route }) {
     >
       <ScrollView style={{ flex: 1, padding: 20 }}>
         <Text style={{ fontSize: 24, marginTop: 10, marginBottom: 20 }}>
-          Bem-vindo!
+          Bem-vindo ao nosso atacadão!
         </Text>
  
         <View style={{ marginBottom: 20 }}>
-          <Button title="Ler código de barras" onPress={handleOpenScanner} />
+          <Button title="Ler código de barras" onPress={handleOpenScanner} color={'green'} />
         </View>
  
         <TextInput
@@ -184,11 +184,12 @@ export default function HomeScreen({ navigation, route }) {
         <Button
           title={editingProductId ? "Atualizar produto" : "Cadastrar produto"}
           onPress={handleSaveProduct}
+          color={'green'}
         />
  
         {editingProductId && (
           <View style={{ marginTop: 10 }}>
-            <Button title="Cancelar edição" onPress={handleCancelEdit} />
+            <Button title="Cancelar edição" onPress={handleCancelEdit} color={'green'} />
           </View>
         )}
  
@@ -218,6 +219,7 @@ export default function HomeScreen({ navigation, route }) {
         <Button
           title="Editar"
           onPress={() => handleEditProduct(item)}
+          color={'green'}
         />
       </View>
 
@@ -225,6 +227,7 @@ export default function HomeScreen({ navigation, route }) {
         <Button
           title="Excluir"
           onPress={() => handleDeleteProduct(item.id)}
+          color={'green'}
         />
       </View>
     </View>
@@ -232,7 +235,7 @@ export default function HomeScreen({ navigation, route }) {
 )}
  
         <View style={{ marginTop: 20, marginBottom: 60 }}>
-          <Button title="Sair" onPress={() => navigation.navigate("Login")} />
+          <Button title="Sair" onPress={() => navigation.navigate("Login")} color={'green'} />
         </View>
       </ScrollView>
     </KeyboardAvoidingView>

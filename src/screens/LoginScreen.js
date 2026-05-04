@@ -63,7 +63,7 @@ export default function LoginScreen({ navigation }) {
           style={{ borderWidth: 1, marginBottom: 10, padding: 10 }}
         />
 
-        <Button title="Entrar" onPress={handleLogin} />
+        <Button  title="Entrar" onPress={handleLogin} color={'green'} />
 
         {erro ? (
           <Text style={{ color: 'red', marginTop: 10 }}>{erro}</Text>
