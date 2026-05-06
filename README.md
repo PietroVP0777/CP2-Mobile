@@ -1,58 +1,49 @@
-# 📱 Projeto React Native (Expo)
+# 📱 Aplicativo Mobile com React Native (Expo)
 
-## 📚 Base do Projeto
+## 📌 Contexto
 
-Este projeto foi desenvolvido a partir de um template utilizado em aula na FIAP, com o objetivo de praticar conceitos fundamentais de **React Native com Expo**.
+Este projeto teve como ponto de partida um template utilizado em aula na FIAP, servindo como base para explorar conceitos essenciais de desenvolvimento mobile com React Native e Expo.
 
-A partir dessa base inicial, foram implementadas melhorias focadas em **usabilidade, experiência do usuário e ajustes de comportamento da aplicação**.
-
----
-
-# 🎯 Objetivo do Projeto
-
-Criar uma aplicação mobile com navegação entre telas e aprimorar sua usabilidade através de melhorias práticas, simulando situações reais de desenvolvimento.
+A partir dessa estrutura inicial, foram realizadas diversas adaptações com foco em melhorar a experiência do usuário, organização do código e comportamento da interface.
 
 ---
 
-# 🧱 Tecnologias Utilizadas
+## 🎯 Propósito
 
-* React Native
-* Expo (SDK 54)
-* React Navigation
+Desenvolver uma aplicação mobile com múltiplas telas, aplicando boas práticas de navegação e refinando a usabilidade com melhorias inspiradas em cenários reais de desenvolvimento.
 
 ---
 
-# 🚀 Como Executar o Projeto
+## 🧰 Tecnologias
 
-## 1. Clonar o repositório
+- React Native  
+- Expo (SDK 54)  
+- React Navigation  
 
-```bash
+---
+
+## ▶️ Executando o Projeto
+
+### 1. Clonar o repositório
+
 git clone https://github.com/LuizCamilo-Mobile/FIAP-Project-Mobile-Example.git
-```
 
-## 2. Acessar a pasta
+### 2. Entrar na pasta do projeto
 
-```bash
 cd fiap-auth-app
-```
 
-## 3. Instalar dependências
+### 3. Instalar dependências
 
-```bash
 npm install
-```
 
-## 4. Rodar o projeto
+### 4. Iniciar a aplicação
 
-```bash
 npx expo start
-```
 
 ---
 
-# 📁 Estrutura do Projeto
+## 📂 Organização de Pastas
 
-```text
 src/
   components/
   navigation/
@@ -62,83 +53,68 @@ src/
     RegisterScreen.js
     ForgotPasswordScreen.js
     HomeScreen.js
-```
 
 ---
 
-# 🧭 Fluxo de Navegação
+## 🔄 Navegação entre Telas
 
-* Login → Home
-* Login → Cadastro
-* Login → Recuperação de Senha
-* Cadastro → Voltar
-* Recuperação → Voltar
-* Home → Login
-
----
-
-# ✨ Melhorias Implementadas
-
-Durante o desenvolvimento, foram aplicadas melhorias importantes em relação ao projeto original:
-
-### 💰 Melhoria 1: Formatação de Preço
-
-* Implementação de formatação no padrão brasileiro (R$)
-* Melhor leitura e padronização de valores monetários
+- Login → Home  
+- Login → Cadastro  
+- Login → Recuperação de senha  
+- Cadastro → Retorno ao Login  
+- Recuperação → Retorno ao Login  
+- Home → Logout (volta para Login)  
 
 ---
 
-### ⌨️ Melhoria 2: Ajuste do Teclado em Telas Pequenas
+## ✨ Ajustes e Melhorias
 
-* Correção do problema onde o teclado sobrepunha campos
-* Melhor experiência de digitação em dispositivos menores
+### 💵 Exibição de Valores
+- Formatação de preços no padrão brasileiro (R$)  
+- Melhor legibilidade  
 
----
+### 📱 Comportamento do Teclado
+- Correção de sobreposição  
+- Melhor usabilidade em telas menores  
 
-### 💾 Melhoria 3: Persistência de Dados
+### 💾 Manutenção de Estado
+- Preservação de dados entre telas  
+- Evita perda de informações  
 
-* Preservação das informações do produto ao retornar do leitor de código de barras
-* Evita perda de dados durante a navegação
-
----
-
-### 📜 Melhoria 4: Ajuste de Rolagem
-
-* Correção do comportamento de scroll em telas menores
-* Garantia de acesso a todos os campos da interface
-
----
-
-# 🧠 Conceitos Trabalhados
-
-* Componentes básicos (`View`, `Text`, `TextInput`)
-* Estilização com `StyleSheet`
-* Uso de `TouchableOpacity`
-* Navegação com Stack (`React Navigation`)
-* Gerenciamento de estado básico
-* Experiência do usuário (UX)
-* Ajustes de responsividade
+### 📜 Scroll Ajustado
+- Correção de rolagem  
+- Acesso garantido a todos os campos  
 
 ---
 
-# 🛠️ Problemas Resolvidos
+## 🧠 Aprendizados
 
-### Erro: "expected dynamic type 'boolean', but had type 'string'"
+- Componentes básicos (View, Text, TextInput)  
+- Estilização com StyleSheet  
+- Uso de TouchableOpacity  
+- Navegação com Stack Navigator  
+- Gerenciamento de estado  
+- UX e responsividade  
+
+---
+
+## 🛠️ Correção Aplicada
+
+Problema:
+expected dynamic type 'boolean', but had type 'string'
 
 Solução:
-
-```bash
 npm install react-native-screens@4.16.0 --save-exact
-```
----
-
-# 🗣️ Observação
-
-Este projeto começou como base educacional e foi evoluído com melhorias práticas, demonstrando a aplicação de boas práticas de desenvolvimento mobile.
 
 ---
 
-# 👨‍💻 Autor
-Professor: Luiz Camilo
+## 📌 Considerações
 
-Aprimorado por: Pietro Vitor Pezzente
+O projeto evoluiu de um modelo educacional para uma aplicação com melhorias práticas, refletindo situações reais do desenvolvimento mobile.
+
+---
+
+## 👨‍💻 Créditos
+
+Base original: Professor Luiz Camilo  
+Customizações: Pietro Vitor Pezzente  
